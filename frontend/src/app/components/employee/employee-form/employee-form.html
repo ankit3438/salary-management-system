@@ -1,0 +1,47 @@
+<section class="page">
+  <mat-card
+    ><mat-card-header
+      ><mat-card-title>{{
+        isEdit ? 'Edit Employee' : 'Add Employee'
+      }}</mat-card-title></mat-card-header
+    ><mat-card-content
+      ><form [formGroup]="form" (ngSubmit)="submit()" class="form">
+        <mat-form-field appearance="outline"
+          ><mat-label>Employee Code</mat-label
+          ><input matInput formControlName="employeeCode" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>First Name</mat-label
+          ><input matInput formControlName="firstName" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Last Name</mat-label
+          ><input matInput formControlName="lastName" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Email</mat-label
+          ><input matInput formControlName="email" type="email" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Department</mat-label
+          ><input matInput formControlName="department" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Designation</mat-label
+          ><input matInput formControlName="designation" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Country</mat-label
+          ><input matInput formControlName="country" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Status</mat-label
+          ><mat-select formControlName="status"
+            ><mat-option value="ACTIVE">Active</mat-option
+            ><mat-option value="INACTIVE">Inactive</mat-option></mat-select
+          ></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Date of Joining</mat-label
+          ><input matInput type="date" formControlName="dateOfJoining"
+        /></mat-form-field>
+        <div class="actions">
+          <button mat-button type="button" routerLink="/employees">Cancel</button
+          ><button mat-raised-button color="primary">Save Employee</button>
+        </div>
+      </form></mat-card-content
+    ></mat-card
+  >
+</section>

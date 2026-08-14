@@ -1,0 +1,16 @@
+.page {
+  padding: 32px;
+  max-width: 900px;
+  margin: auto;
+}
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+}
+.actions {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

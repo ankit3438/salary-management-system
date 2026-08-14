@@ -1,0 +1,27 @@
+<section class="page">
+  <h1>Analytics Dashboard</h1>
+  <p>Overview of employee and payroll information.</p>
+  <div class="grid">
+    <mat-card
+      ><mat-card-header><mat-card-title>Total Employees</mat-card-title></mat-card-header
+      ><mat-card-content
+        ><b>{{ summary.totalEmployees }}</b></mat-card-content
+      ></mat-card
+    ><mat-card
+      ><mat-card-header><mat-card-title>Active Employees</mat-card-title></mat-card-header
+      ><mat-card-content
+        ><b>{{ summary.activeEmployees }}</b></mat-card-content
+      ></mat-card
+    ><mat-card
+      ><mat-card-header><mat-card-title>Total Payroll</mat-card-title></mat-card-header
+      ><mat-card-content
+        ><b>{{ summary.totalPayroll | number: '1.0-0' }}</b></mat-card-content
+      ></mat-card
+    ><mat-card
+      ><mat-card-header><mat-card-title>Average Salary</mat-card-title></mat-card-header
+      ><mat-card-content
+        ><b>{{ summary.averageSalary | number: '1.0-0' }}</b></mat-card-content
+      ></mat-card
+    >
+  </div>
+</section>

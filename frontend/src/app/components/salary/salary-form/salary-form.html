@@ -1,0 +1,30 @@
+<section class="page">
+  <mat-card
+    ><mat-card-header><mat-card-title>Add Salary</mat-card-title></mat-card-header
+    ><mat-card-content
+      ><form [formGroup]="form" (ngSubmit)="submit()" class="form">
+        <mat-form-field appearance="outline"
+          ><mat-label>Base Salary</mat-label
+          ><input matInput type="number" formControlName="baseSalary" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Bonus</mat-label
+          ><input matInput type="number" formControlName="bonus" /></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Currency</mat-label
+          ><mat-select formControlName="currency"
+            ><mat-option value="USD">USD</mat-option><mat-option value="EUR">EUR</mat-option
+            ><mat-option value="GBP">GBP</mat-option
+            ><mat-option value="INR">INR</mat-option></mat-select
+          ></mat-form-field
+        ><mat-form-field appearance="outline"
+          ><mat-label>Effective From</mat-label
+          ><input matInput type="date" formControlName="effectiveFrom"
+        /></mat-form-field>
+        <div class="actions">
+          <button mat-button type="button" [routerLink]="['/employees', employeeId]">Cancel</button
+          ><button mat-raised-button color="primary">Save Salary</button>
+        </div>
+      </form></mat-card-content
+    ></mat-card
+  >
+</section>
