@@ -1,0 +1,426 @@
+{
+  "info": {
+    "_postman_id": "salary-management-system-api",
+    "name": "Salary Management System API",
+    "description": "Complete API collection for Salary Management System\n\nBase URL: http://localhost:8080",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Employee Management",
+      "item": [
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees?page=0&size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (0-indexed)"
+                },
+                {
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of records per page"
+                }
+              ]
+            },
+            "description": "Fetch all employees with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/search?search=john&department=Engineering&country=India&status=ACTIVE&page=0&size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "john",
+                  "description": "Search by name, code, or email"
+                },
+                {
+                  "key": "department",
+                  "value": "Engineering",
+                  "description": "Filter by department (optional)"
+                },
+                {
+                  "key": "country",
+                  "value": "India",
+                  "description": "Filter by country (optional)"
+                },
+                {
+                  "key": "status",
+                  "value": "ACTIVE",
+                  "description": "Filter by status (optional)"
+                },
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number"
+                },
+                {
+                  "key": "size",
+                  "value": "20",
+                  "description": "Records per page"
+                }
+              ]
+            },
+            "description": "Search and filter employees by multiple criteria"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Employee by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1"
+              ]
+            },
+            "description": "Fetch a specific employee by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Employee by Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/code/EMP001",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "code",
+                "EMP001"
+              ]
+            },
+            "description": "Fetch employee by employee code"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeCode\": \"EMP001\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"department\": \"Engineering\",\n  \"designation\": \"Software Engineer\",\n  \"country\": \"India\",\n  \"joiningDate\": \"2024-01-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees"
+              ]
+            },
+            "description": "Create a new employee record\n\nNote: status, createdAt, and updatedAt are automatically set by the system"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeCode\": \"EMP001\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john.smith@example.com\",\n  \"department\": \"Engineering\",\n  \"designation\": \"Senior Software Engineer\",\n  \"country\": \"USA\",\n  \"joiningDate\": \"2024-01-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1"
+              ]
+            },
+            "description": "Update an existing employee record"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Employee",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1"
+              ]
+            },
+            "description": "Delete an employee record (cascades to salary records)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Salary Management",
+      "item": [
+        {
+          "name": "Add Salary Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseSalary\": 1200000,\n  \"bonus\": 200000,\n  \"currency\": \"INR\",\n  \"effectiveFrom\": \"2026-09-01\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary"
+              ]
+            },
+            "description": "Add a new salary record for an employee\n\nNote: Salary records are effective-dated, allowing salary history tracking"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Salary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary"
+              ]
+            },
+            "description": "Get the current salary of an employee (latest effective salary)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Salary History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary/history",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary",
+                "history"
+              ]
+            },
+            "description": "Get complete salary history for an employee (all records)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Salary History (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary/history/paginated?page=0&size=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary",
+                "history",
+                "paginated"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number"
+                },
+                {
+                  "key": "size",
+                  "value": "10",
+                  "description": "Records per page"
+                }
+              ]
+            },
+            "description": "Get paginated salary history for an employee"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Salary by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/employees/1/salary/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "employees",
+                "1",
+                "salary",
+                "1"
+              ]
+            },
+            "description": "Get a specific salary record by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Salary Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/summary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "summary"
+              ]
+            },
+            "description": "Get organization-wide salary statistics:\n- Total employees count\n- Average salary\n- Median salary\n- Minimum salary\n- Maximum salary"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Salary by Department",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/by-department",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "by-department"
+              ]
+            },
+            "description": "Get salary analytics breakdown by department:\n- Department name\n- Employee count per department\n- Average, median, min, max salary per department"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Salary by Country",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/by-country",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "by-country"
+              ]
+            },
+            "description": "Get salary analytics breakdown by country:\n- Country name\n- Employee count per country\n- Average, median, min, max salary per country"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
