@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -17,16 +18,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/employees")
-@RequiredArgsConstructor
+@RequiredArgsConstructor // ---------------> for constructor injection using lombok
 @Slf4j
+//we have implemented crud operation for employee table or we can say for entity....
 public class EmployeeController {
 
     private final EmployeeService employeeService;
 
     @GetMapping
     public ResponseEntity<Page<EmployeeResponse>> getAllEmployees(
-            @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        log.info("GET /api/employees - Fetching all employees");
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        log.info("GET /api/employees - Fetching all employees, page={}, size={}", page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
         Page<EmployeeResponse> employees = employeeService.getAllEmployees(pageable);
         return ResponseEntity.ok(employees);
     }
@@ -37,9 +41,16 @@ public class EmployeeController {
             @RequestParam(required = false) String department,
             @RequestParam(required = false) String country,
             @RequestParam(required = false) String status,
-            @PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        log.info("GET /api/employees/search - Searching employees with criteria");
-        Page<EmployeeResponse> employees = employeeService.searchEmployees(search, department, country, status, pageable);
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+
+        log.info("GET /api/employees/search - Searching employees with criteria, page={}, size={}", page, size);
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+
+        Page<EmployeeResponse> employees = employeeService.searchEmployees(
+                search, department, country, status, pageable);
+
         return ResponseEntity.ok(employees);
     }
 
