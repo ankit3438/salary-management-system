@@ -16,10 +16,10 @@ Modules can be extracted into services if real requirements justify it.
 
 ---
 
-## 2. PostgreSQL vs NoSQL
+## 2. MySQL vs NoSQL
 
 ### Decision
-Use PostgreSQL.
+Use MySQL.
 
 ### Why
 The problem is relational:
@@ -28,7 +28,7 @@ The problem is relational:
 - Analytics require aggregations.
 - Referential integrity is useful.
 
-A relational database is also explicitly allowed by the assessment.
+MySQL is a reliable relational database that is widely used, cost-effective, and explicitly allowed by the assessment.
 
 ---
 

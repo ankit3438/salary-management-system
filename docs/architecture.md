@@ -22,7 +22,7 @@ The solution uses a **modular monolith** for the backend rather than multiple mi
         |               |               |
         +---------------+---------------+
                         |
-                    PostgreSQL
+                       MySQL
 ```
 
 The assessment requires an end-to-end backend and UI, a relational database, seeded data, testing, deployment, and supporting engineering artifacts.
@@ -70,7 +70,7 @@ This is a deliberate trade-off rather than a limitation. If future requirements 
 - Bean Validation
 
 ### Database
-- PostgreSQL
+- MySQL 8.0+
 - Flyway for schema migrations
 
 ### Frontend
@@ -100,7 +100,7 @@ Service
 Repository
     |
     v
-PostgreSQL
+MySQL
 ```
 
 Controllers handle HTTP concerns, services contain business logic, repositories handle persistence, and DTOs prevent persistence entities from becoming the API contract.
@@ -139,7 +139,7 @@ EmployeeService
    |
 EmployeeRepository
    |
-PostgreSQL
+MySQL
 ```
 
 ## 8. Key Architectural Principles
