@@ -5,6 +5,7 @@ import { EmployeeDetails } from './components/employee/employee-details/employee
 import { EmployeeForm } from './components/employee/employee-form/employee-form';
 import { SalaryForm } from './components/salary/salary-form/salary-form';
 import { SalaryHistory } from './components/salary/salary-history/salary-history';
+
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', component: Dashboard },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'employees/:id/edit', component: EmployeeForm },
   { path: 'employees/:id', component: EmployeeDetails },
   { path: 'employees/:employeeId/salary/add', component: SalaryForm },
-  { path: 'employees/:employeeId/salary', component: SalaryHistory },
+    { path: 'employees/:employeeId/salary', component: SalaryHistory },
+  { path: 'employees/:employeeId/salary/add', component: SalaryForm },
   { path: '**', redirectTo: 'dashboard' },
 ];

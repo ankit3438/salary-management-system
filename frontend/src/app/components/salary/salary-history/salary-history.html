@@ -9,20 +9,33 @@
       Add Salary
     </button>
   </div>
-  <table mat-table [dataSource]="salaries">
-    <ng-container matColumnDef="effectiveFrom"
-      ><th mat-header-cell *matHeaderCellDef>Effective From</th>
-      <td mat-cell *matCellDef="let s">{{ s.effectiveFrom }}</td></ng-container
-    ><ng-container matColumnDef="baseSalary"
-      ><th mat-header-cell *matHeaderCellDef>Base Salary</th>
-      <td mat-cell *matCellDef="let s">{{ s.baseSalary | currency: s.currency }}</td></ng-container
-    ><ng-container matColumnDef="bonus"
-      ><th mat-header-cell *matHeaderCellDef>Bonus</th>
-      <td mat-cell *matCellDef="let s">{{ s.bonus | currency: s.currency }}</td></ng-container
-    ><ng-container matColumnDef="currency"
-      ><th mat-header-cell *matHeaderCellDef>Currency</th>
-      <td mat-cell *matCellDef="let s">{{ s.currency }}</td></ng-container
-    >
+
+  <table mat-table [dataSource]="salaries" class="mat-elevation-z8">
+
+    <!-- Effective From -->
+    <ng-container matColumnDef="effectiveFrom">
+      <th mat-header-cell *matHeaderCellDef>Effective From</th>
+      <td mat-cell *matCellDef="let s">{{ s.effectiveFrom | date:'dd-MM-yyyy' }}</td>
+    </ng-container>
+
+    <!-- Base Salary -->
+    <ng-container matColumnDef="baseSalary">
+      <th mat-header-cell *matHeaderCellDef>Base Salary</th>
+      <td mat-cell *matCellDef="let s">{{ s.baseSalary | currency:s.currency }}</td>
+    </ng-container>
+
+    <!-- Bonus -->
+    <ng-container matColumnDef="bonus">
+      <th mat-header-cell *matHeaderCellDef>Bonus</th>
+      <td mat-cell *matCellDef="let s">{{ s.bonus | currency:s.currency }}</td>
+    </ng-container>
+
+    <!-- Currency -->
+    <ng-container matColumnDef="currency">
+      <th mat-header-cell *matHeaderCellDef>Currency</th>
+      <td mat-cell *matCellDef="let s">{{ s.currency }}</td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns: columns"></tr>
   </table>
