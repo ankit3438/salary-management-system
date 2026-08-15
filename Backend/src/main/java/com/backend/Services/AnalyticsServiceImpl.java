@@ -1,6 +1,7 @@
 package com.backend.Services;
 
 import com.backend.dto.CountrySalaryResponse;
+import com.backend.dto.DashboardSummaryResponse;
 import com.backend.dto.DepartmentSalaryResponse;
 import com.backend.dto.SalarySummaryResponse;
 import com.backend.repository.EmployeeRepository;
@@ -137,5 +138,28 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         } else {
             return salaries.get(size / 2);
         }
+    }
+
+    @Override
+    public DashboardSummaryResponse getDashboardSummary() {
+        // TODO Auto-generated method stub
+        long totalEmployees = employeeRepository.count();
+        long activeEmployees = employeeRepository.countByStatus("ACTIVE");
+        Double totalPayroll = salaryRepository.findAllCurrentSalaries().stream()
+                .map(s -> s.getBaseSalary().add(s.getBonus()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .doubleValue();
+
+        Double avgSalary = totalEmployees > 0 ? totalPayroll / totalEmployees : 0.0;
+
+        return DashboardSummaryResponse.builder()
+                .totalEmployees(totalEmployees)
+                .activeEmployees(activeEmployees)
+                .totalPayroll(totalPayroll)
+                .averageSalary(avgSalary)
+                .build();
+
+
+        
     }
 }
