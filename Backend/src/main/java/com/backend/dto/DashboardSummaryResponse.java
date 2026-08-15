@@ -1,5 +1,8 @@
 package com.backend.dto;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +16,6 @@ public class DashboardSummaryResponse {
 
     private Long totalEmployees;
     private Long activeEmployees;
-    private Double totalPayroll;
-    private Double averageSalary;
+    private Map<String, BigDecimal> totalPayrollByCurrency;
+    private Map<String, Double> averageSalaryByCurrency;
 }

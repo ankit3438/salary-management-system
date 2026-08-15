@@ -4,6 +4,7 @@ import com.backend.dto.CountrySalaryResponse;
 import com.backend.dto.DashboardSummaryResponse;
 import com.backend.dto.DepartmentSalaryResponse;
 import com.backend.dto.SalarySummaryResponse;
+import com.backend.entity.Salary;
 import com.backend.repository.EmployeeRepository;
 import com.backend.repository.SalaryRepository;
 
@@ -141,25 +142,32 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     }
 
     @Override
-    public DashboardSummaryResponse getDashboardSummary() {
-        // TODO Auto-generated method stub
-        long totalEmployees = employeeRepository.count();
-        long activeEmployees = employeeRepository.countByStatus("ACTIVE");
-        Double totalPayroll = salaryRepository.findAllCurrentSalaries().stream()
-                .map(s -> s.getBaseSalary().add(s.getBonus()))
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .doubleValue();
+public DashboardSummaryResponse getDashboardSummary() {
+    long totalEmployees = employeeRepository.count();
+    long activeEmployees = employeeRepository.countByStatus("ACTIVE");
 
-        Double avgSalary = totalEmployees > 0 ? totalPayroll / totalEmployees : 0.0;
+    var salaries = salaryRepository.findAllCurrentSalaries();
 
-        return DashboardSummaryResponse.builder()
-                .totalEmployees(totalEmployees)
-                .activeEmployees(activeEmployees)
-                .totalPayroll(totalPayroll)
-                .averageSalary(avgSalary)
-                .build();
+    Map<String, BigDecimal> totalPayrollByCurrency = salaries.stream()
+        .collect(Collectors.groupingBy(
+            Salary::getCurrency,
+            Collectors.reducing(BigDecimal.ZERO,
+                s -> s.getBaseSalary().add(s.getBonus()),
+                BigDecimal::add)
+        ));
 
+    Map<String, Double> averageSalaryByCurrency = new HashMap<>();
+    totalPayrollByCurrency.forEach((currency, total) -> {
+        long count = salaries.stream().filter(s -> s.getCurrency().equals(currency)).count();
+        averageSalaryByCurrency.put(currency, count > 0 ? total.doubleValue() / count : 0.0);
+    });
 
-        
-    }
+    return DashboardSummaryResponse.builder()
+            .totalEmployees(totalEmployees)
+            .activeEmployees(activeEmployees)
+            .totalPayrollByCurrency(totalPayrollByCurrency)
+            .averageSalaryByCurrency(averageSalaryByCurrency)
+            .build();
+}
+
 }
