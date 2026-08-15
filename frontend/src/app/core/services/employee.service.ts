@@ -8,8 +8,8 @@ import {
 import { Observable } from 'rxjs';
 
 import { Employee } from '../models/employee.model';
+import { EmployeeFilters } from '../models/employee-filter.model';
 import { PageResponse } from '../models/api-response.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,9 @@ export class EmployeeService {
 
   private apiUrl = '/api/employees';
 
-
   constructor(
     private http: HttpClient
   ) {}
-
 
   /* =========================
      GET ALL EMPLOYEES
@@ -41,9 +39,7 @@ export class EmployeeService {
           .set('size', size)
       }
     );
-
   }
-
 
   /* =========================
      SEARCH / FILTER EMPLOYEES
@@ -58,11 +54,9 @@ export class EmployeeService {
     size = 20
   ): Observable<PageResponse<Employee>> {
 
-
     let params = new HttpParams()
       .set('page', page)
       .set('size', size);
-
 
     /*
      * Search
@@ -77,7 +71,6 @@ export class EmployeeService {
 
     }
 
-
     /*
      * Department
      */
@@ -90,7 +83,6 @@ export class EmployeeService {
       );
 
     }
-
 
     /*
      * Country
@@ -105,7 +97,6 @@ export class EmployeeService {
 
     }
 
-
     /*
      * Status
      */
@@ -119,28 +110,24 @@ export class EmployeeService {
 
     }
 
-
-    /*
-     * Example generated URL:
-     *
-     * /api/employees/search
-     *     ?search=John
-     *     &department=Engineering
-     *     &country=India
-     *     &status=ACTIVE
-     *     &page=0
-     *     &size=20
-     */
-
     return this.http.get<PageResponse<Employee>>(
       `${this.apiUrl}/search`,
       {
         params
       }
     );
-
   }
 
+  /* =========================
+     GET EMPLOYEE FILTERS
+     ========================= */
+
+  getFilters(): Observable<EmployeeFilters> {
+
+    return this.http.get<EmployeeFilters>(
+      `${this.apiUrl}/filters`
+    );
+  }
 
   /* =========================
      GET EMPLOYEE BY ID
@@ -153,9 +140,7 @@ export class EmployeeService {
     return this.http.get<Employee>(
       `${this.apiUrl}/${id}`
     );
-
   }
-
 
   /* =========================
      CREATE EMPLOYEE
@@ -169,9 +154,7 @@ export class EmployeeService {
       this.apiUrl,
       employee
     );
-
   }
-
 
   /* =========================
      UPDATE EMPLOYEE
@@ -186,9 +169,7 @@ export class EmployeeService {
       `${this.apiUrl}/${id}`,
       employee
     );
-
   }
-
 
   /* =========================
      DELETE EMPLOYEE
@@ -201,7 +182,6 @@ export class EmployeeService {
     return this.http.delete<void>(
       `${this.apiUrl}/${id}`
     );
-
   }
 
 }

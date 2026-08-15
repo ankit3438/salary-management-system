@@ -3,6 +3,7 @@ package com.backend.Services;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.backend.dto.EmployeeFilterResponse;
 import com.backend.dto.EmployeeRequest;
 import com.backend.dto.EmployeeResponse;
 
@@ -21,4 +22,6 @@ public interface EmployeeService {
     EmployeeResponse updateEmployee(Long id, EmployeeRequest request);
 
     void deleteEmployee(Long id);
+
+    EmployeeFilterResponse getEmployeeFilters();
 }

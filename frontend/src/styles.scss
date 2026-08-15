@@ -1,4 +1,93 @@
 @use '@angular/material' as mat;
 @include mat.core();
-html{@include mat.all-component-typographies();}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#1f2937}*{box-sizing:border-box}
+html {
+  @include mat.all-component-typographies();
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+* {
+  box-sizing: border-box;
+}
+/* =====================================================
+   SUCCESS SNACKBAR
+   ===================================================== */
+
+.success-snackbar {
+  --mdc-snackbar-container-color: #198754;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+  --mat-snack-bar-button-color: #ffffff;
+}
+
+
+/* =====================================================
+   ERROR SNACKBAR
+   ===================================================== */
+
+.error-snackbar {
+  --mdc-snackbar-container-color: #dc3545;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+  --mat-snack-bar-button-color: #ffffff;
+}
+
+
+/* =====================================================
+   MOVE SNACKBAR TO RIGHT-MIDDLE
+   ===================================================== */
+
+.cdk-overlay-container
+.cdk-overlay-pane.mat-mdc-snack-bar-panel {
+
+  top: 50% !important;
+
+  right: 24px !important;
+
+  bottom: auto !important;
+
+  left: auto !important;
+
+  transform: translateY(-50%) !important;
+
+  margin: 0 !important;
+}
+.success-snackbar {
+  --mdc-snackbar-container-color: #198754;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: #dc3545;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.mat-mdc-snack-bar-container {
+  margin: 0 !important;
+}
+.success-snackbar {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  top: auto !important;
+}
+
+.error-snackbar {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  top: auto !important;
+}
+
+.mat-mdc-select-panel {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.mat-mdc-option {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}

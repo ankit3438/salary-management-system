@@ -2,6 +2,7 @@ package com.backend.Services;
 
 import com.backend.common.exception.DuplicateEmployeeException;
 import com.backend.common.exception.EmployeeNotFoundException;
+import com.backend.dto.EmployeeFilterResponse;
 import com.backend.dto.EmployeeRequest;
 import com.backend.dto.EmployeeResponse;
 import com.backend.entity.Employee;
@@ -9,6 +10,9 @@ import com.backend.repository.EmployeeRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,8 +35,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<EmployeeResponse> searchEmployees(String search, String department, String country, String status, Pageable pageable) {
-        log.info("Searching employees with filters - search: {}, department: {}, country: {}, status: {}", search, department, country, status);
+    public Page<EmployeeResponse> searchEmployees(String search, String department, String country, String status,
+            Pageable pageable) {
+        log.info("Searching employees with filters - search: {}, department: {}, country: {}, status: {}", search,
+                department, country, status);
         return employeeRepository.findByCriteria(search, department, country, status, pageable)
                 .map(this::mapToResponse);
     }
@@ -138,5 +144,21 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .createdAt(employee.getCreatedAt())
                 .updatedAt(employee.getUpdatedAt())
                 .build();
+    }
+
+    @Override
+    public EmployeeFilterResponse getEmployeeFilters() {
+        // TODO Auto-generated method stub
+        log.info("Fetching distinct departments and countries...");
+
+    List<String> departments = employeeRepository.findDistinctDepartments();
+    log.info("Departments found: {}", departments);
+
+    List<String> countries = employeeRepository.findDistinctCountries();
+    log.info("Countries found: {}", countries);
+
+        return new EmployeeFilterResponse(
+                departments,
+                countries);
     }
 }

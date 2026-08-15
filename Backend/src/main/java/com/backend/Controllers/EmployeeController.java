@@ -1,6 +1,7 @@
 package com.backend.Controllers;
 
 import com.backend.Services.EmployeeService;
+import com.backend.dto.EmployeeFilterResponse;
 import com.backend.dto.EmployeeRequest;
 import com.backend.dto.EmployeeResponse;
 
@@ -20,7 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/employees")
 @RequiredArgsConstructor // ---------------> for constructor injection using lombok
 @Slf4j
-//we have implemented crud operation for employee table or we can say for entity....
+// we have implemented crud operation for employee table or we can say for
+// entity....
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -52,6 +54,15 @@ public class EmployeeController {
                 search, department, country, status, pageable);
 
         return ResponseEntity.ok(employees);
+    }
+
+    @GetMapping("/filters")
+    public ResponseEntity<EmployeeFilterResponse> getEmployeeFilters() {
+
+        log.info("GET /api/employees/filters");
+
+        return ResponseEntity.ok(
+                employeeService.getEmployeeFilters());
     }
 
     @GetMapping("/{id}")

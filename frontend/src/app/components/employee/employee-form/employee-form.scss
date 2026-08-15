@@ -1,16 +1,131 @@
 .page {
   padding: 32px;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto;
 }
+
+mat-card {
+  width: 100%;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
+
+mat-form-field {
+  width: 100%;
+}
+
 .actions {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
+
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 10px;
+}
+/* =========================================
+   FORM SUCCESS / ERROR NOTIFICATION
+   ========================================= */
+
+.form-notification {
+  position: fixed;
+
+  right: 24px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 10000;
+
+  min-width: 300px;
+
+  padding: 14px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-radius: 4px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+
+  font-size: 15px;
+}
+
+
+/* SUCCESS */
+
+.form-notification.success {
+  background: #e8f5e9;
+  color: #1b5e20;
+
+  border-left: 4px solid #2e7d32;
+}
+
+
+/* ERROR */
+
+.form-notification.error {
+  background: #ffebee;
+  color: #b71c1c;
+
+  border-left: 4px solid #c62828;
+}
+
+
+/* CLOSE BUTTON */
+
+.form-notification button {
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  padding: 0;
+
+  color: inherit;
+}
+/* Make dropdown/select panel completely opaque */
+::ng-deep .mat-mdc-select-panel {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Make dropdown options opaque as well */
+::ng-deep .mat-mdc-option {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Hovered option */
+::ng-deep .mat-mdc-option:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Selected option */
+::ng-deep .mat-mdc-option.mdc-list-item--selected {
+  background-color: #ffffff !important;
 }
