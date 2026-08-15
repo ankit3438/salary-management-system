@@ -8,5 +8,5 @@ export interface Employee {
   designation: string;
   country: string;
   status: 'ACTIVE' | 'INACTIVE';
-  dateOfJoining: string;
+  joiningDate: string;
 }

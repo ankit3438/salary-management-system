@@ -12,7 +12,7 @@
         <p><b>Designation:</b> {{ employee.designation }}</p>
         <p><b>Country:</b> {{ employee.country }}</p>
         <p><b>Status:</b> {{ employee.status }}</p>
-        <p><b>Joining:</b> {{ employee.dateOfJoining }}</p></mat-card-content
+        <p><b>Joining:</b> {{ employee.joiningDate }}</p></mat-card-content
       ><mat-card-actions
         ><button mat-button [routerLink]="['/employees', employee.id, 'edit']">Edit</button
         ><button mat-button [routerLink]="['/employees', employee.id, 'salary', 'add']">
