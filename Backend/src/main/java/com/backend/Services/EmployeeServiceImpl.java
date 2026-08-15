@@ -112,6 +112,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDesignation(request.getDesignation());
         employee.setCountry(request.getCountry());
         employee.setJoiningDate(request.getJoiningDate());
+        employee.setStatus(request.getStatus() != null ? request.getStatus() : employee.getStatus());
 
         Employee updatedEmployee = employeeRepository.save(employee);
         log.info("Employee updated successfully with id: {}", id);

@@ -34,4 +34,6 @@ public class EmployeeRequest {
     private String country;
 
     private LocalDate joiningDate;
+
+    private String status;
 }

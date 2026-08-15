@@ -1,373 +1,197 @@
 <section class="page">
-
   <mat-card>
-
     <mat-card-header>
-
       <mat-card-title>
         {{ isEdit ? 'Edit Employee' : 'Add Employee' }}
       </mat-card-title>
-
     </mat-card-header>
 
-
     <mat-card-content>
-
-      <form
-        [formGroup]="form"
-        (ngSubmit)="submit()"
-        class="form"
-      >
-
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form">
         <!-- ========================================= -->
         <!-- EMPLOYEE CODE -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Employee Code</mat-label>
 
-          <input
-            matInput
-            formControlName="employeeCode"
-            placeholder="EMP001"
-          />
+          <input matInput formControlName="employeeCode" placeholder="EMP001" />
 
           @if (
-            form.controls.employeeCode.hasError('required') &&
-            form.controls.employeeCode.touched
+            form.controls.employeeCode.hasError('required') && form.controls.employeeCode.touched
           ) {
-
-            <mat-error>
-              Employee code is required
-            </mat-error>
-
+            <mat-error> Employee code is required </mat-error>
           }
 
           @if (
-            form.controls.employeeCode.hasError('pattern') &&
-            form.controls.employeeCode.touched
+            form.controls.employeeCode.hasError('pattern') && form.controls.employeeCode.touched
           ) {
-
-            <mat-error>
-              Employee code must be like EMP001
-            </mat-error>
-
+            <mat-error> Employee code must be like EMP001 </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- FIRST NAME -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>First Name</mat-label>
 
-          <input
-            matInput
-            formControlName="firstName"
-          />
+          <input matInput formControlName="firstName" />
 
-          @if (
-            form.controls.firstName.hasError('required') &&
-            form.controls.firstName.touched
-          ) {
-
-            <mat-error>
-              First name is required
-            </mat-error>
-
+          @if (form.controls.firstName.hasError('required') && form.controls.firstName.touched) {
+            <mat-error> First name is required </mat-error>
           }
 
-          @if (
-            form.controls.firstName.hasError('minlength') &&
-            form.controls.firstName.touched
-          ) {
-
-            <mat-error>
-              First name must contain at least 2 characters
-            </mat-error>
-
+          @if (form.controls.firstName.hasError('minlength') && form.controls.firstName.touched) {
+            <mat-error> First name must contain at least 2 characters </mat-error>
           }
 
-          @if (
-            form.controls.firstName.hasError('pattern') &&
-            form.controls.firstName.touched
-          ) {
-
-            <mat-error>
-              First name can contain only letters
-            </mat-error>
-
+          @if (form.controls.firstName.hasError('pattern') && form.controls.firstName.touched) {
+            <mat-error> First name can contain only letters </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- LAST NAME -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Last Name</mat-label>
 
-          <input
-            matInput
-            formControlName="lastName"
-          />
+          <input matInput formControlName="lastName" />
 
-          @if (
-            form.controls.lastName.hasError('required') &&
-            form.controls.lastName.touched
-          ) {
-
-            <mat-error>
-              Last name is required
-            </mat-error>
-
+          @if (form.controls.lastName.hasError('required') && form.controls.lastName.touched) {
+            <mat-error> Last name is required </mat-error>
           }
 
-          @if (
-            form.controls.lastName.hasError('minlength') &&
-            form.controls.lastName.touched
-          ) {
-
-            <mat-error>
-              Last name must contain at least 2 characters
-            </mat-error>
-
+          @if (form.controls.lastName.hasError('minlength') && form.controls.lastName.touched) {
+            <mat-error> Last name must contain at least 2 characters </mat-error>
           }
 
-          @if (
-            form.controls.lastName.hasError('pattern') &&
-            form.controls.lastName.touched
-          ) {
-
-            <mat-error>
-              Last name can contain only letters
-            </mat-error>
-
+          @if (form.controls.lastName.hasError('pattern') && form.controls.lastName.touched) {
+            <mat-error> Last name can contain only letters </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- EMAIL -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Email</mat-label>
 
-          <input
-            matInput
-            type="email"
-            formControlName="email"
-            placeholder="john@example.com"
-          />
+          <input matInput type="email" formControlName="email" placeholder="john@example.com" />
 
-          @if (
-            form.controls.email.hasError('required') &&
-            form.controls.email.touched
-          ) {
-
-            <mat-error>
-              Email is required
-            </mat-error>
-
+          @if (form.controls.email.hasError('required') && form.controls.email.touched) {
+            <mat-error> Email is required </mat-error>
           }
 
-          @if (
-            form.controls.email.hasError('email') &&
-            form.controls.email.touched
-          ) {
-
-            <mat-error>
-              Please enter a valid email address
-            </mat-error>
-
+          @if (form.controls.email.hasError('email') && form.controls.email.touched) {
+            <mat-error> Please enter a valid email address </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- DEPARTMENT -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Department</mat-label>
 
-          <input
-            matInput
-            formControlName="department"
-          />
+          <input matInput formControlName="department" />
 
-          @if (
-            form.controls.department.hasError('required') &&
-            form.controls.department.touched
-          ) {
-
-            <mat-error>
-              Department is required
-            </mat-error>
-
+          @if (form.controls.department.hasError('required') && form.controls.department.touched) {
+            <mat-error> Department is required </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- DESIGNATION -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Designation</mat-label>
 
-          <input
-            matInput
-            formControlName="designation"
-          />
+          <input matInput formControlName="designation" />
 
           @if (
-            form.controls.designation.hasError('required') &&
-            form.controls.designation.touched
+            form.controls.designation.hasError('required') && form.controls.designation.touched
           ) {
-
-            <mat-error>
-              Designation is required
-            </mat-error>
-
+            <mat-error> Designation is required </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- COUNTRY -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Country</mat-label>
 
-          <input
-            matInput
-            formControlName="country"
-          />
+          <input matInput formControlName="country" />
 
-          @if (
-            form.controls.country.hasError('required') &&
-            form.controls.country.touched
-          ) {
-
-            <mat-error>
-              Country is required
-            </mat-error>
-
+          @if (form.controls.country.hasError('required') && form.controls.country.touched) {
+            <mat-error> Country is required </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- STATUS -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Status</mat-label>
 
           <mat-select formControlName="status">
+            <mat-option value="ACTIVE"> Active </mat-option>
 
-            <mat-option value="ACTIVE">
-              Active
-            </mat-option>
-
-            <mat-option value="INACTIVE">
-              Inactive
-            </mat-option>
-
+            <mat-option value="INACTIVE"> Inactive </mat-option>
           </mat-select>
 
-          @if (
-            form.controls.status.hasError('required') &&
-            form.controls.status.touched
-          ) {
-
-            <mat-error>
-              Status is required
-            </mat-error>
-
+          @if (form.controls.status.hasError('required') && form.controls.status.touched) {
+            <mat-error> Status is required </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- JOINING DATE -->
         <!-- ========================================= -->
 
         <mat-form-field appearance="outline">
-
           <mat-label>Date of Joining</mat-label>
 
-          <input
-            matInput
-            type="date"
-            formControlName="joiningDate"
-          />
+          <input matInput type="date" formControlName="joiningDate" />
 
           @if (
-            form.controls.joiningDate.hasError('required') &&
-            form.controls.joiningDate.touched
+            form.controls.joiningDate.hasError('required') && form.controls.joiningDate.touched
           ) {
-
-            <mat-error>
-              Date of joining is required
-            </mat-error>
-
+            <mat-error> Date of joining is required </mat-error>
           }
-
         </mat-form-field>
-
 
         <!-- ========================================= -->
         <!-- ACTIONS -->
         <!-- ========================================= -->
 
         <div class="actions">
+          <button mat-button type="button" routerLink="/employees">Cancel</button>
 
-          <button
-            mat-button
-            type="button"
-            routerLink="/employees"
-          >
-            Cancel
-          </button>
-
-
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-          >
+          <button mat-raised-button color="primary" type="submit">
             {{ isEdit ? 'Update Employee' : 'Save Employee' }}
           </button>
 
+          <!-- Salary buttons only visible in edit mode -->
+          <button
+            *ngIf="isEdit"
+            mat-raised-button
+            color="warn"
+            [routerLink]="['/employees', id, 'salary', 'add']"
+          >
+            Add/Update Salary
+          </button>
         </div>
-
       </form>
-
     </mat-card-content>
-
   </mat-card>
-
 </section>
